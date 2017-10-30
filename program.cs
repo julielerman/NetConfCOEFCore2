@@ -8,7 +8,6 @@ namespace SamuraiApp.Console {
   class Program {
     static void Main (string[] args) {
       using (var context = new SamuraiContext ()) {
-        context.Database.EnsureDeleted ();
         context.Database.Migrate ();
       }
       //StoreNewSamuraiWithEntrance ();
