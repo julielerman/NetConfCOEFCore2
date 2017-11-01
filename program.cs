@@ -20,6 +20,7 @@ namespace SamuraiApp.Console
       // StoreNewSamuraiWithEntranceAndIdentity();
       //ListSamuraisWithEntranceAndIdentity();
       //AddQuoteToSamurai();
+      //ReplaceValueObjectFails();
       //ReplaceValueObject();
     }
 
@@ -70,7 +71,16 @@ namespace SamuraiApp.Console
       //   context.SaveChanges();
       // }
     }
-
+   static void ReplaceValueObjectFails()
+     {
+    //   //workaround for current failing in owned entities
+    //   using (var context = new SamuraiContext())
+    //   {
+    //     var samurai = context.Samurais.FirstOrDefault();
+    //      samurai.Identify("new", "identity");
+    //     context.SaveChanges();
+    //   }
+    }
     static void ReplaceValueObject()
     {
       // //workaround for current failing in owned entities
@@ -89,7 +99,6 @@ namespace SamuraiApp.Console
 
       //   context.Entry(updatedPersonName).State = EntityState.Modified;
 
-      //   context.ChangeTracker.DetectChanges();
       //   context.SaveChanges();
       // }
     }
