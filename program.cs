@@ -103,5 +103,14 @@ namespace SamuraiApp.Console
       //   context.SaveChanges();
       // }
     }
+     static void ListSamuraisWithEntranceAndIdentity () {
+      // using (var context = new SamuraiContext ()) {
+      //   var samurais = context.Samurais.Include ("Entrance").ToList ();
+      //   foreach (var samurai in samurais) {
+      //     Console.WriteLine ($"{samurai.Name}, Enters in {samurai.EntranceScene} ");
+      //     Console.WriteLine ($"Secret Identity: {samurai.SecretIdentity.FullName()}");
+
+      //   }
+       }
   }
 }
