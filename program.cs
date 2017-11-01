@@ -67,7 +67,7 @@ namespace SamuraiApp.Console
       // {
       //   var samurai=context.Samurais.Find(1);
       //   samurai.AddQuote("hello? hello?");
-      //   var quote=Samurai.AddQuote("All those apples will make you sick, silly boy", 2));
+      //   var quote=Samurai.AddQuote("All those apples will make you sick, silly boy", 2);
       //   context.Add(quote);
       //   context.SaveChanges();
       // }
