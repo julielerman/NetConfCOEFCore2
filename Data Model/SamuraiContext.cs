@@ -11,7 +11,10 @@ namespace DataModel
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=VegasSamurai.db");
-             base.OnConfiguring(optionsBuilder);
+         }
+         protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Samurai>().OwnsOne(s=>s.SecretIdentity);
         }
     }
 }
