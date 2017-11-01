@@ -43,6 +43,7 @@ namespace SamuraiApp.Console
       // var samurai = new Samurai("Julie");
 
       // samurai.CreateEntrance(1, "S1", "Wandering around neighborhood looking for her dog");
+      // samurai.Quotes.Add(new Quote());
       // using (var context = new SamuraiContext())
       // {
       //   context.Samurais.Add(samurai);
