@@ -6,7 +6,7 @@ namespace SamuraiApp.Domain {
 
     public Samurai () {
       Quotes = new List<Quote> ();
-        }
+    }
 
     public int Id { get; set; }
     public string Name { get; set; }
