@@ -27,7 +27,7 @@ namespace SamuraiApp.Console
     
     static void StoreNewSamuraiWithEntrance()
     {
-      // var samurai = new Samurai { Name = "Kojashi" };
+      // var samurai = new Samurai("Kojashi" );
 
       // samurai.CreateEntrance(1, "Scene 1", "Walking up a road eating an apple");
       // using (var context = new SamuraiContext())
@@ -39,7 +39,7 @@ namespace SamuraiApp.Console
 
     private static void StoreNewSamuraiWithEntranceAndQuote()
     {
-      // var samurai = new Samurai { Name = "Julie" };
+      // var samurai = new Samurai("Julie");
 
       // samurai.CreateEntrance(1, "S1", "Wandering around neighborhood looking for her dog");
       // using (var context = new SamuraiContext())
@@ -50,7 +50,7 @@ namespace SamuraiApp.Console
     }
     static void StoreNewSamuraiWithEntranceAndIdentity()
     {
-      // var samurai = new Samurai { Name = "Giantpuppy" };
+      // var samurai = new Samurai ("Giantpuppy");
       // samurai.Identify("Sampson", "Newfie");
       // samurai.CreateEntrance(2, "S2", "Eating apples under the apple trees");
       // using (var context = new SamuraiContext())
