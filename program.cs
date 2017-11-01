@@ -3,49 +3,93 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using DataModel;
 using SamuraiApp.Domain;
+using System.Reflection;
 
-namespace SamuraiApp.Console {
-  class Program {
-    static void Main (string[] args) {
-      using (var context = new SamuraiContext ()) {
-        context.Database.Migrate ();
+namespace SamuraiApp.Console
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      using (var context = new SamuraiContext())
+      {
+        context.Database.Migrate();
       }
-      //StoreNewSamuraiWithEntrance ();
-      //StoreNewSamuraiWithEntranceAndIdentity();
+      StoreNewSamuraiWithEntrance ();
+      //StoreNewSamuraiWithEntranceAndQuote();
+      // StoreNewSamuraiWithEntranceAndIdentity();
       //ListSamuraisWithEntranceAndIdentity();
+      //AddQuoteToSamurai();
+      //ReplaceValueObject();
+    }
+
+
     
-     }
-    
-    // static void StoreNewSamuraiWithEntrance () {
-    //   var samurai = new Samurai { Name = "Julie" };
+    static void StoreNewSamuraiWithEntrance()
+    {
+      // var samurai = new Samurai { Name = "Kojashi" };
 
-    //   samurai.CreateEntrance (1, "S1", "Here I am!");
-    //   using (var context = new SamuraiContext ()) {
-    //     context.Samurais.Add (samurai);
-    //     context.SaveChanges ();
-    //   }
-    // }
+      // samurai.CreateEntrance(1, "Scene 1", "Walking up a road eating an apple");
+      // using (var context = new SamuraiContext())
+      // {
+      //   context.Samurais.Add(samurai);
+      //   context.SaveChanges();
+      // }
+    }
 
-//     static void StoreNewSamuraiWithEntranceAndIdentity () {
-//       var samurai = new Samurai { Name = "Giantpuppy" };
-// samurai.Identify("Sampson","Newfie");
-//       samurai.CreateEntrance (2, "S2", "Woof!");
-//       using (var context = new SamuraiContext ()) {
-//         context.Samurais.Add (samurai);
-//         context.SaveChanges ();
-//       }
-//     }
-    // static void ListSamuraisWithEntranceAndIdentity () {
-    //   using (var context = new SamuraiContext ()) {
-    //     var samurais = context.Samurais.Include ("Entrance").ToList ();
-    //     foreach (var samurai in samurais) {
-    //       Console.WriteLine ($"{samurai.Name}, Enters in {samurai.EntranceScene} ");
-    //       Console.WriteLine ($"Secret Identity: {samurai.SecretIdentity.FullName()}");
+    private static void StoreNewSamuraiWithEntranceAndQuote()
+    {
+      // var samurai = new Samurai { Name = "Julie" };
 
-    //     }
-    //   }
-    // }
-       
+      // samurai.CreateEntrance(1, "S1", "Wandering around neighborhood looking for her dog");
+      // using (var context = new SamuraiContext())
+      // {
+      //   context.Samurais.Add(samurai);
+      //   context.SaveChanges();
+      // }
+    }
+    static void StoreNewSamuraiWithEntranceAndIdentity()
+    {
+      // var samurai = new Samurai { Name = "Giantpuppy" };
+      // samurai.Identify("Sampson", "Newfie");
+      // samurai.CreateEntrance(2, "S2", "Eating apples under the apple trees");
+      // using (var context = new SamuraiContext())
+      // {
+      //   context.Samurais.Add(samurai);
+      //   context.SaveChanges();
+      // }
+    }
 
+    static void AddQuoteToSamurai()
+    {
+      // using (var context = new SamuraiContext())
+      // {
+      //   context.Add(Samurai.AddQuote("All those apples will make you sick, silly boy", 2));
+      //   context.SaveChanges();
+      // }
+    }
+
+    static void ReplaceValueObject()
+    {
+      //workaround for current failing in owned entities
+      using (var context = new SamuraiContext())
+      {
+        var samurai = context.Samurais.FirstOrDefault();
+        //if SecretIdentity was public, I could:
+        //context.Entry(samurai.SecretIdentity).State = EntityState.Detached;
+
+        //but it's private, so isn't public in my domain so I have to work harder at this
+
+        var originalpersonName = context.Entry(samurai).Reference("SecretIdentity").CurrentValue;
+        context.Entry(originalpersonName).State = EntityState.Detached;
+        samurai.Identify("new", "identity");
+        var updatedPersonName = context.Entry(samurai).Reference("SecretIdentity").CurrentValue;
+
+        context.Entry(updatedPersonName).State = EntityState.Modified;
+
+        context.ChangeTracker.DetectChanges();
+        context.SaveChanges();
+      }
+    }
   }
 }
