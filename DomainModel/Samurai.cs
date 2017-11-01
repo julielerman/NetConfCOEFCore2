@@ -15,8 +15,9 @@ namespace SamuraiApp.Domain {
     public Entrance Entrance { get; set; } //1:1
     
     public PersonName SecretIdentity { get; private set; }
-    public void Identify (string first, string last) {
-     SecretIdentity = PersonName.Create (first, last);
+    public void Identify (string first, string last) 
+    {
+      SecretIdentity = PersonName.Create (first, last);
     }
   }
 }
