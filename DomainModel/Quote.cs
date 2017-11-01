@@ -2,6 +2,7 @@
 {
   public class Quote
   {
+    public Quote(){}
     public Quote(string quoteText, int samuraiId)
     {
       Text = quoteText;
