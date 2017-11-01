@@ -4,11 +4,15 @@ using System.Collections.Generic;
 namespace SamuraiApp.Domain {
   public class Samurai {
 
-    public Samurai () {
+    public Samurai(string name)
+    {
+        Name=name;
+    }
+    private Samurai () {
       Quotes = new List<Quote> ();
     }
 
-    public int Id { get; set; }
+    public int Id { get; private set; }
     public string Name { get; set; }
     public List<Quote> Quotes { get; set; } //1:*
 
