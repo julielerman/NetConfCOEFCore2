@@ -15,11 +15,11 @@ namespace SamuraiApp.Console
       {
         context.Database.Migrate();
       }
-      StoreNewSamuraiWithEntrance ();
+      //StoreNewSamuraiWithEntrance ();
       //StoreNewSamuraiWithEntranceAndQuote();
       // StoreNewSamuraiWithEntranceAndIdentity();
       //ListSamuraisWithEntranceAndIdentity();
-      //AddQuoteToSamurai();
+      AddQuoteToSamurai();
       //ReplaceValueObjectFails();
       //ReplaceValueObject();
     }
@@ -28,27 +28,27 @@ namespace SamuraiApp.Console
     
     static void StoreNewSamuraiWithEntrance()
     {
-      // var samurai = new Samurai("Kojashi" );
+      var samurai = new Samurai("Kojashi" );
 
-      // samurai.CreateEntrance(1, "Scene 1", "Walking up a road eating an apple");
-      // using (var context = new SamuraiContext())
-      // {
-      //   context.Samurais.Add(samurai);
-      //   context.SaveChanges();
-      // }
+      samurai.CreateEntrance(1, "Scene 1", "Walking up a road eating an apple");
+      using (var context = new SamuraiContext())
+      {
+        context.Samurais.Add(samurai);
+        context.SaveChanges();
+      }
     }
 
     private static void StoreNewSamuraiWithEntranceAndQuote()
     {
-      // var samurai = new Samurai("Julie");
+      var samurai = new Samurai("Julie");
 
-      // samurai.CreateEntrance(1, "S1", "Wandering around neighborhood looking for her dog");
-      // samurai.Quotes.Add(new Quote());
-      // using (var context = new SamuraiContext())
-      // {
-      //   context.Samurais.Add(samurai);
-      //   context.SaveChanges();
-      // }
+      samurai.CreateEntrance(1, "S1", "Wandering around neighborhood looking for her dog");
+      samurai.AddQuote("some quote");
+      using (var context = new SamuraiContext())
+      {
+        context.Samurais.Add(samurai);
+        context.SaveChanges();
+      }
     }
     static void StoreNewSamuraiWithEntranceAndIdentity()
     {
@@ -64,14 +64,14 @@ namespace SamuraiApp.Console
 
     static void AddQuoteToSamurai()
     {
-      // using (var context = new SamuraiContext())
-      // {
-      //   var samurai=context.Samurais.Find(1);
-      //   samurai.AddQuote("hello? hello?");
-      //   var quote=Samurai.AddQuote("All those apples will make you sick, silly boy", 2);
-      //   context.Add(quote);
-      //   context.SaveChanges();
-      // }
+      using (var context = new SamuraiContext())
+      {
+        //var samurai=context.Samurais.Find(1);
+        //samurai.AddQuote("hello? hello?");
+        var quote=Samurai.AddQuote("All those apples will make you sick, silly boy", 2);
+        context.Add(quote);
+        context.SaveChanges();
+      }
     }
    static void ReplaceValueObjectFails()
      {
