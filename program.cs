@@ -107,9 +107,9 @@ namespace SamuraiApp.Console
       // using (var context = new SamuraiContext ()) {
       //   var samurais = context.Samurais.Include ("Entrance").ToList ();
       //   foreach (var samurai in samurais) {
-      //     Console.WriteLine ($"{samurai.Name}, Enters in {samurai.EntranceScene} ");
-      //     Console.WriteLine ($"Secret Identity: {samurai.SecretIdentity.FullName()}");
-
+      //     System.Console.WriteLine ($"{samurai.Name}, Enters in {samurai.EntranceScene} ");
+      //     System.Console.WriteLine ($"Secret Identity: {samurai.SecretIdentity.FullName()}");
+      //     System.Console.WriteLine();
       //   }
        }
   }
