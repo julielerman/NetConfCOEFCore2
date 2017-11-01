@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SamuraiApp.Domain;
 using System;
+using System.Linq;
 
 namespace DataModel
 {
