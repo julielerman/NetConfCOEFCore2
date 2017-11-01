@@ -71,25 +71,25 @@ namespace SamuraiApp.Console
 
     static void ReplaceValueObject()
     {
-      //workaround for current failing in owned entities
-      using (var context = new SamuraiContext())
-      {
-        var samurai = context.Samurais.FirstOrDefault();
-        //if SecretIdentity was public, I could:
-        //context.Entry(samurai.SecretIdentity).State = EntityState.Detached;
+      // //workaround for current failing in owned entities
+      // using (var context = new SamuraiContext())
+      // {
+      //   var samurai = context.Samurais.FirstOrDefault();
+      //   //if SecretIdentity was public, I could:
+      //   //context.Entry(samurai.SecretIdentity).State = EntityState.Detached;
 
-        //but it's private, so isn't public in my domain so I have to work harder at this
+      //   //but it's private, so isn't public in my domain so I have to work harder at this
 
-        var originalpersonName = context.Entry(samurai).Reference("SecretIdentity").CurrentValue;
-        context.Entry(originalpersonName).State = EntityState.Detached;
-        samurai.Identify("new", "identity");
-        var updatedPersonName = context.Entry(samurai).Reference("SecretIdentity").CurrentValue;
+      //   var originalpersonName = context.Entry(samurai).Reference("SecretIdentity").CurrentValue;
+      //   context.Entry(originalpersonName).State = EntityState.Detached;
+      //   samurai.Identify("new", "identity");
+      //   var updatedPersonName = context.Entry(samurai).Reference("SecretIdentity").CurrentValue;
 
-        context.Entry(updatedPersonName).State = EntityState.Modified;
+      //   context.Entry(updatedPersonName).State = EntityState.Modified;
 
-        context.ChangeTracker.DetectChanges();
-        context.SaveChanges();
-      }
+      //   context.ChangeTracker.DetectChanges();
+      //   context.SaveChanges();
+      // }
     }
   }
 }

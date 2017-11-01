@@ -17,11 +17,6 @@ namespace SamuraiApp.Domain {
     public List<Quote> Quotes { get; set; } //1:*
 
     public Entrance Entrance { get; set; } //1:1
-    
-    public PersonName SecretIdentity { get; private set; } //value object
-    public void Identify (string first, string last) 
-    {
-      SecretIdentity = PersonName.Create (first, last);
-    }
+  
   }
 }
