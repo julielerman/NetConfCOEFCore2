@@ -11,7 +11,7 @@ namespace DataModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=VegasSamurai.db");
+            optionsBuilder.UseSqlite("Filename=Samurai.db");
         }
     
     }
