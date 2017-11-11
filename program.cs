@@ -11,15 +11,17 @@ namespace SamuraiApp.Console {
       using (var context = new SamuraiContext ()) {
         context.Database.Migrate ();
       }
-      StoreNewSamuraiWithEntrance ();
-      StoreNewSamuraiWithEntranceAndQuote ();
-      AddQuoteToExistingSamurai ();
+      // StoreNewSamuraiWithEntrance ();
+      // StoreNewSamuraiWithEntranceAndQuote ();
+      // AddQuoteToExistingSamurai ();
+       StoreNewSamuraiWithEntranceAndIdentity();
+       ReplaceValueObject();
     }
 
     static void StoreNewSamuraiWithEntrance () {
-      var samurai = new Samurai ("Kojashi2");
+      var samurai = new Samurai ("Kojashi3");
      //samurai.Entrance = new Entrance (1, "Scene 1", "Caminando por una carretera comiendo una manzana");
-       samurai.CreateEntrance (1, "Scene 2", "Caminando por una carretera comiendo una manzana");
+       samurai.CreateEntrance (1, "Scene 3", "Caminando por una carretera comiendo una manzana");
       using (var context = new SamuraiContext ()) {
         context.Samurais.Add (samurai);
         context.SaveChanges ();
@@ -27,10 +29,10 @@ namespace SamuraiApp.Console {
     }
 
     private static void StoreNewSamuraiWithEntranceAndQuote () {
-      var samurai = new Samurai ("Julie2");
+      var samurai = new Samurai ("Julie3");
      //samurai.Entrance = new Entrance (1, "Scene 1", "Explorando el vecindario, buscando a su perro");
      //samurai.Quotes.Add (new Quote ("¿Has visto a mi perro?"));
-      samurai.CreateEntrance (1, "S2", "Explorando el vecindario, buscando a su perro");
+      samurai.CreateEntrance (1, "S3", "Explorando el vecindario, buscando a su perro");
       samurai.AddQuote ("mas quote");
       using (var context = new SamuraiContext ()) {
         context.Samurais.Add (samurai);
@@ -42,7 +44,7 @@ namespace SamuraiApp.Console {
       using (var context = new SamuraiContext ()) {
         //var samurai=context.Samurais.Find(1);
         //samurai.AddQuote("hello? hello?");
-        var quote = Samurai.AddQuote ("Todas esas manzanas te pondrán enfermo, perro tonto", 2);
+        var quote = Samurai.AddQuote ("(3) Todas esas manzanas te pondrán enfermo, perro tonto", 2);
         context.Add (quote);
         context.SaveChanges ();
       }
@@ -52,7 +54,7 @@ namespace SamuraiApp.Console {
     {
       var samurai = new Samurai ("Giantpuppy");
       samurai.Identify("Sampson", "Newfie");
-      samurai.CreateEntrance(2, "S2", "Eating apples under the apple trees");
+      samurai.CreateEntrance(3, "S3", "Comiendo manzanas debajo de los manzanos");
       using (var context = new SamuraiContext())
       {
         context.Samurais.Add(samurai);
@@ -90,7 +92,7 @@ namespace SamuraiApp.Console {
           System.Console.WriteLine();
         }
       }
- 
+     }
 
   }
 }
