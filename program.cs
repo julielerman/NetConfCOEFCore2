@@ -11,9 +11,10 @@ namespace SamuraiApp.Console {
       using (var context = new SamuraiContext ()) {
         context.Database.Migrate ();
       }
-      // StoreNewSamuraiWithEntrance ();
-      // StoreNewSamuraiWithEntranceAndQuote ();
-      // AddQuoteToExistingSamurai ();
+       StoreNewSamuraiWithEntrance ();
+       StoreNewSamuraiWithEntranceAndQuote ();
+       AddQuoteToExistingSamurai ();
+       
        StoreNewSamuraiWithEntranceAndIdentity();
        ReplaceValueObject();
     }
