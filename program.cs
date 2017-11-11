@@ -17,9 +17,9 @@ namespace SamuraiApp.Console {
     }
 
     static void StoreNewSamuraiWithEntrance () {
-      var samurai = new Samurai ("Kojashi");
+      var samurai = new Samurai ("Kojashi2");
      //samurai.Entrance = new Entrance (1, "Scene 1", "Caminando por una carretera comiendo una manzana");
-      samurai.CreateEntrance (1, "Scene 1", "Caminando por una carretera comiendo una manzana");
+      samurai.CreateEntrance (1, "Scene 2", "Caminando por una carretera comiendo una manzana");
       using (var context = new SamuraiContext ()) {
         context.Samurais.Add (samurai);
         context.SaveChanges ();
@@ -27,11 +27,11 @@ namespace SamuraiApp.Console {
     }
 
     private static void StoreNewSamuraiWithEntranceAndQuote () {
-      var samurai = new Samurai ("Julie");
+      var samurai = new Samurai ("Julie2");
      //samurai.Entrance = new Entrance (1, "Scene 1", "Explorando el vecindario, buscando a su perro");
      //samurai.Quotes.Add (new Quote ("¿Has visto a mi perro?"));
-      samurai.CreateEntrance (1, "S1", "Explorando el vecindario, buscando a su perro");
-      samurai.AddQuote ("some quote");
+      samurai.CreateEntrance (1, "S2", "Explorando el vecindario, buscando a su perro");
+      samurai.AddQuote ("mas quote");
       using (var context = new SamuraiContext ()) {
         context.Samurais.Add (samurai);
         context.SaveChanges ();
