@@ -51,6 +51,8 @@ namespace SamuraiApp.Console {
       }
     }
 
+     //Explanation of EF Core 2 and Value Objects
+     //msdn.microsoft.com/magazine/mt826347
      static void StoreNewSamuraiWithEntranceAndIdentity()
     {
       var samurai = new Samurai ("Giantpuppy");
