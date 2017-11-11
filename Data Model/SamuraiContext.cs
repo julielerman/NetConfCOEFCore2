@@ -13,7 +13,7 @@ namespace DataModel {
       base.OnModelCreating (modelBuilder);
     }
     protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder) {
-      optionsBuilder.UseSqlite ("Filename=VegasSamurai.db");
+      optionsBuilder.UseSqlite("Filename=../DemoData/Samurai.db");
     }
 
     //let EF take care of its rule that you can't insert a samurai without
