@@ -11,42 +11,18 @@ namespace SamuraiApp.Console {
       using (var context = new SamuraiContext ()) {
         context.Database.Migrate ();
       }
-       StoreNewSamuraiWithEntrance ();
-       StoreNewSamuraiWithEntranceAndQuote ();
-       AddQuoteToExistingSamurai ();
-       
+       StoreNewSamuraiWithEntrance (); 
+          
        StoreNewSamuraiWithEntranceAndIdentity();
        ReplaceValueObject();
     }
 
+    //Identity is NULL
     static void StoreNewSamuraiWithEntrance () {
       var samurai = new Samurai ("Kojashi3");
-     //samurai.Entrance = new Entrance (1, "Scene 1", "Caminando por una carretera comiendo una manzana");
        samurai.CreateEntrance (1, "Scene 3", "Caminando por una carretera comiendo una manzana");
       using (var context = new SamuraiContext ()) {
         context.Samurais.Add (samurai);
-        context.SaveChanges ();
-      }
-    }
-
-    private static void StoreNewSamuraiWithEntranceAndQuote () {
-      var samurai = new Samurai ("Julie3");
-     //samurai.Entrance = new Entrance (1, "Scene 1", "Explorando el vecindario, buscando a su perro");
-     //samurai.Quotes.Add (new Quote ("¿Has visto a mi perro?"));
-      samurai.CreateEntrance (1, "S3", "Explorando el vecindario, buscando a su perro");
-      samurai.AddQuote ("mas quote");
-      using (var context = new SamuraiContext ()) {
-        context.Samurais.Add (samurai);
-        context.SaveChanges ();
-      }
-    }
-
-    static void AddQuoteToExistingSamurai () {
-      using (var context = new SamuraiContext ()) {
-        //var samurai=context.Samurais.Find(1);
-        //samurai.AddQuote("hello? hello?");
-        var quote = Samurai.AddQuote ("(3) Todas esas manzanas te pondrán enfermo, perro tonto", 2);
-        context.Add (quote);
         context.SaveChanges ();
       }
     }
@@ -65,6 +41,7 @@ namespace SamuraiApp.Console {
       }
     }
 
+    //Explanation at github.com/aspnet/EntityFrameworkCore/issues/9803
     static void ReplaceValueObject()
     {
       //workaround for current failing in owned entities
