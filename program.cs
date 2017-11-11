@@ -27,7 +27,7 @@ namespace SamuraiApp.Console {
 
     private static void StoreNewSamuraiWithEntranceAndQuote () {
       var samurai = new Samurai ("Julie");
-      samurai.Entrance = new Entrance (1, "Scene 1", "Walking up a road eating an apple");
+      samurai.Entrance = new Entrance (1, "Scene 1", "Explorando el vecindario, buscando a su perro");
 
       samurai.Quotes.Add (new Quote ("¿Has visto a mi perro?"));
       using (var context = new SamuraiContext ()) {

@@ -5,9 +5,10 @@ using System.Linq;
 namespace SamuraiApp.Domain {
   public class Samurai {
 
-    public Samurai(string name)
+    public Samurai(string name):this()
     {
         Name=name;
+        
     }
     private Samurai () {
       Quotes = new List<Quote> ();

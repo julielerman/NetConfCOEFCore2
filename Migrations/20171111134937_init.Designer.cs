@@ -10,7 +10,7 @@ using System;
 namespace EFCore2Demo.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    [Migration("20171101132331_init")]
+    [Migration("20171111134937_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
