@@ -48,5 +48,49 @@ namespace SamuraiApp.Console {
       }
     }
 
+     static void StoreNewSamuraiWithEntranceAndIdentity()
+    {
+      var samurai = new Samurai ("Giantpuppy");
+      samurai.Identify("Sampson", "Newfie");
+      samurai.CreateEntrance(2, "S2", "Eating apples under the apple trees");
+      using (var context = new SamuraiContext())
+      {
+        context.Samurais.Add(samurai);
+        context.SaveChanges();
+      }
+    }
+
+    static void ReplaceValueObject()
+    {
+      //workaround for current failing in owned entities
+      using (var context = new SamuraiContext())
+      {
+        var samurai = context.Samurais.FirstOrDefault();
+        //if SecretIdentity was public, I could:
+       // context.Entry(samurai.SecretIdentity).State = EntityState.Detached;
+
+        //but it's private, so isn't public in my domain so I have to work harder at this
+         var originalpersonName = context.Entry(samurai).Reference("SecretIdentity").CurrentValue;
+         context.Entry(originalpersonName).State = EntityState.Detached;
+        samurai.Identify("primero", "último");
+        var updatedPersonName = context.Entry(samurai).Reference("SecretIdentity").CurrentValue;
+
+        context.Entry(updatedPersonName).State = EntityState.Modified;
+
+        context.SaveChanges();
+      }
+    }
+     static void ListSamuraisWithEntranceAndIdentity () {
+      using (var context = new SamuraiContext ()) {
+        var samurais = context.Samurais.Include ("Entrance").ToList ();
+        foreach (var samurai in samurais) {
+          System.Console.WriteLine($"{samurai.Name}, Enters in {samurai.EntranceScene} ");
+  
+          System.Console.WriteLine ($"Secret Identity: {samurai.RevealSecretIdentity()}");
+          System.Console.WriteLine();
+        }
+      }
+ 
+
   }
 }

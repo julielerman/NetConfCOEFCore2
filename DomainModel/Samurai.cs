@@ -8,14 +8,12 @@ namespace SamuraiApp.Domain {
     public Samurai (string name) {
       Name = name;
     }
-    private Samurai () {
-      //Quotes = new List<Quote> ();
-    }
+    private Samurai () { }
 
     public int Id { get; private set; }
     public string Name { get; set; }
-
-    // public List<Quote> Quotes { get; set; } //1:*
+   
+    //totally encapsulated 1:* relationship
     private readonly List<Quote> _quotes = new List<Quote> ();
     public IEnumerable<Quote> Quotes => _quotes.ToList ();
     public void AddQuote (string quoteText) {
@@ -23,27 +21,35 @@ namespace SamuraiApp.Domain {
       var newQuote = new Quote (quoteText, Id);
       _quotes.Add (newQuote);
     }
+
+    //static method to allow adding quotes to a samurai without an instance
     public static Quote AddQuote (string quoteText, int samuriId) {
       //TODO: Remove naughty words
       var newQuote = new Quote (quoteText, samuriId);
       return newQuote;
     }
 
-    //public Entrance Entrance { get; set; } //1:1
-
-    //___Backing Field_____
-    // private Entrance _entrance; 
-    // private Entrance Entrance => _entrance;
-    // public void CreateEntrance (int minute, string sceneName, string description) {
-    //    _entrance = new Entrance (minute, sceneName, description);
-    //  }
-    //  public string EntranceScene => _entrance?.SceneName;
-
-    //___Inferred Backing Field_____
+    //Totally encapsulated 1:1 relationship
+    //HasOne mapping added to context because entrance is not a discoverable property 
     private Entrance Entrance { get; set; }
     public void CreateEntrance (int minute, string sceneName, string description) {
       Entrance = new Entrance (minute, sceneName, description);
     }
     public string EntranceScene => Entrance?.SceneName;
+
+    //totally encapsulated private valueobject (mapped as ownedentity of samurai)
+    private PersonName SecretIdentity { get; set; }
+    public string RevealSecretIdentity () {
+      if (SecretIdentity.IsEmpty ()) {
+        return "It's a secret";
+      } else {
+        return SecretIdentity.FullName ();
+      }
+    }
+    public void Identify (string first, string last) {
+      SecretIdentity = PersonName.Create (first, last);
+    }
+
   }
+
 }
