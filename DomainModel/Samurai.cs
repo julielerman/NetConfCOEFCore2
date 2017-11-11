@@ -12,7 +12,7 @@ namespace SamuraiApp.Domain {
 
     public int Id { get; private set; }
     public string Name { get; set; }
-   
+
     //totally encapsulated 1:* relationship
     private readonly List<Quote> _quotes = new List<Quote> ();
     public IEnumerable<Quote> Quotes => _quotes.ToList ();
@@ -39,15 +39,17 @@ namespace SamuraiApp.Domain {
 
     //totally encapsulated private valueobject (mapped as ownedentity of samurai)
     private PersonName SecretIdentity { get; set; }
+    
+    public void Identify (string first, string last) {
+      SecretIdentity = PersonName.Create (first, last);
+    }
+    
     public string RevealSecretIdentity () {
       if (SecretIdentity.IsEmpty ()) {
         return "It's a secret";
       } else {
         return SecretIdentity.FullName ();
       }
-    }
-    public void Identify (string first, string last) {
-      SecretIdentity = PersonName.Create (first, last);
     }
 
   }
