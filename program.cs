@@ -45,7 +45,9 @@ namespace SamuraiApp.Console {
         var quote = Samurai.AddQuote ("Todas esas manzanas te pondrán enfermo, perro tonto", 2);
         context.Add (quote);
         context.SaveChanges ();
-      }
+        //Blog Post With Explanation:
+        //bit.ly/2ABIee0
+     }
     }
 
   }
