@@ -3,10 +3,10 @@
   public class Quote
   {
     public Quote(){}
-    public Quote(string quoteText, int samuraiId)
+    public Quote(string quoteText)
     {
       Text = quoteText;
-      SamuraiId = samuraiId;
+     
     }
     public int Id { get; private set; }
     public string Text { get; set; }
