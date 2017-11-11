@@ -18,7 +18,7 @@ namespace SamuraiApp.Console {
 
     static void StoreNewSamuraiWithEntrance () {
       var samurai = new Samurai ("Kojashi");
-
+     //samurai.Entrance = new Entrance (1, "Scene 1", "Caminando por una carretera comiendo una manzana");
       samurai.CreateEntrance (1, "Scene 1", "Caminando por una carretera comiendo una manzana");
       using (var context = new SamuraiContext ()) {
         context.Samurais.Add (samurai);
